@@ -19,6 +19,7 @@ import {
 } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
+import { EDIT_PROFILE_ROUTE } from "../Routes";
 
 const UserProfilePage = () => {
   const { user } = useAuth();
@@ -26,7 +27,7 @@ const UserProfilePage = () => {
   const navigate = useNavigate();
 
   const handleSettingsClick = () => {
-    navigate("/edit-profile");
+    navigate(EDIT_PROFILE_ROUTE);
   };
 
   return (
@@ -71,7 +72,9 @@ const UserProfilePage = () => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <List>
-                    {user.socialMediaLinks.length > 0 ? (
+                    {user &&
+                    user.socialMediaLinks &&
+                    user.socialMediaLinks.length > 0 ? (
                       user.socialMediaLinks.map((link) => (
                         <ListItem key={link.id}>
                           <ListItemText
@@ -101,11 +104,13 @@ const UserProfilePage = () => {
                   <Typography variant="h6">Goals</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    {user.goalDescription
-                      ? user.goalDescription
-                      : "Data not provided"}
-                  </Typography>
+                  <Typography
+                    dangerouslySetInnerHTML={{
+                      __html: user.goalDescription
+                        ? user.goalDescription
+                        : "Data not provided",
+                    }}
+                  />
                 </AccordionDetails>
               </Accordion>
             </Box>
@@ -115,11 +120,13 @@ const UserProfilePage = () => {
                   <Typography variant="h6">Experience</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    {user.experienceDescription
-                      ? user.experienceDescription
-                      : "Data not provided"}
-                  </Typography>
+                  <Typography
+                    dangerouslySetInnerHTML={{
+                      __html: user.experienceDescription
+                        ? user.experienceDescription
+                        : "Data not provided",
+                    }}
+                  />
                 </AccordionDetails>
               </Accordion>
             </Box>
@@ -129,11 +136,13 @@ const UserProfilePage = () => {
                   <Typography variant="h6">Injuries</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <Typography>
-                    {user.injuryDescription
-                      ? user.injuryDescription
-                      : "Data not provided"}
-                  </Typography>
+                  <Typography
+                    dangerouslySetInnerHTML={{
+                      __html: user.injuryDescription
+                        ? user.injuryDescription
+                        : "Data not provided",
+                    }}
+                  />
                 </AccordionDetails>
               </Accordion>
             </Box>

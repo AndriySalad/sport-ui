@@ -37,7 +37,7 @@ const DefaultLayout = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Container sx={{ mt: 4, display: "flex" }}>
+      <Container sx={{ mt: 4, display: "flex", mb: 4 }}>
         <Outlet />
       </Container>
     </Box>

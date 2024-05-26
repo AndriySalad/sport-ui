@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import { IUserProfileDate } from "./Utils";
+import { IUserProfileDate } from "./UserUtils";
 
 interface AuthContextType {
   user: IUserProfileDate | null;
