@@ -10,14 +10,14 @@ import {
 } from "@mui/material";
 import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { HOME_ROUTE } from "../Routes";
+import { HOME_ROUTE, TRAINING_ROUTE } from "../Routes";
 
 const DefaultLayout = () => {
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <>
+      <AppBar position="sticky">
         <Toolbar>
           <Typography
             variant="h6"
@@ -27,7 +27,7 @@ const DefaultLayout = () => {
           >
             MySport
           </Typography>
-          <Button color="inherit" component={Link} to="/training">
+          <Button color="inherit" component={Link} to={TRAINING_ROUTE}>
             Go to training
           </Button>
           <IconButton color="inherit">
@@ -37,10 +37,12 @@ const DefaultLayout = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Container sx={{ mt: 4, display: "flex", mb: 4 }}>
-        <Outlet />
-      </Container>
-    </Box>
+      <Box sx={{ flexGrow: 1, overflow: "hidden" }}>
+        <Container sx={{ mt: 4, display: "flex", mb: 4, overflow: "auto" }}>
+          <Outlet />
+        </Container>
+      </Box>
+    </>
   );
 };
 
