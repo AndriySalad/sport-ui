@@ -4,3 +4,7 @@ export const LOGIN_ROUTE = "/login";
 export const REGISTER_ROUTE = "/register";
 export const TRAINING_ROUTE = "/trainings";
 export const NOTIFICATIONS_ROUTE = "/notifications";
+export const TRAINER_PROFILE = "/trainer/:id";
+export const ATHLETE_PROFILE = "/athlete/:id";
+export const USERS_LIST = "/users";
+export const MY_ATHLETES = "/my-athletes";
