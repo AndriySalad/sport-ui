@@ -1,4 +1,16 @@
 import axiosInstance from "../utils/Api";
+import { IUserProfileDate } from "../utils/UserUtils";
+
+export interface INotification {
+  id: number;
+  title: string;
+  description: string;
+  type: string;
+  viewed: boolean;
+  date: string;
+  receiver: IUserProfileDate;
+  sender: IUserProfileDate;
+}
 
 export const fetchNotifications = async () => {
   try {
@@ -20,7 +32,7 @@ export const fetchNotificationHistory = async () => {
   }
 };
 
-export const markNotificationAsRead = async (notificationId) => {
+export const markNotificationAsRead = async (notificationId: number) => {
   try {
     const response = await axiosInstance.put(
       `/api/v1/notifications/${notificationId}`
@@ -31,7 +43,7 @@ export const markNotificationAsRead = async (notificationId) => {
   }
 };
 
-export const markAllNotificationsAsRead = async (userId) => {
+export const markAllNotificationsAsRead = async (userId?: number) => {
   try {
     const response = await axiosInstance.put(
       `/api/v1/notifications/all/${userId}`

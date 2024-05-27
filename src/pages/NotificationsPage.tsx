@@ -24,6 +24,7 @@ import {
   markNotificationAsRead,
   fetchNotificationHistory,
   handleRequestResponse,
+  INotification,
 } from "../api/NotificationApi";
 import { useAuth } from "../utils/AuthContext";
 import dayjs from "dayjs";
@@ -33,7 +34,7 @@ const NotificationsPage: React.FC = () => {
   const userId = user?.id;
   const userRole = user?.role;
 
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<INotification[]>([]);
   const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
@@ -56,14 +57,14 @@ const NotificationsPage: React.FC = () => {
     loadNotifications();
   };
 
-  const handleAccept = async (notification) => {
+  const handleAccept = async (notification: INotification) => {
     const action =
       userRole === "ROLE_TRAINER" ? "accept-trainee" : "accept-trainer";
     await handleRequestResponse(notification.id, action);
     loadNotifications();
   };
 
-  const handleDecline = async (notification) => {
+  const handleDecline = async (notification: INotification) => {
     const action =
       userRole === "ROLE_TRAINER" ? "reject-trainee" : "reject-trainer";
     await handleRequestResponse(notification.id, action);
@@ -75,7 +76,7 @@ const NotificationsPage: React.FC = () => {
     loadNotifications();
   };
 
-  const renderNotificationActions = (notification) => {
+  const renderNotificationActions = (notification: INotification) => {
     switch (notification.type) {
       case "TO_BE_COACH":
       case "TO_BE_ATHLETE":
