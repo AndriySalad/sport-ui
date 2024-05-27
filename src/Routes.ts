@@ -3,3 +3,4 @@ export const EDIT_PROFILE_ROUTE = "/profile-config";
 export const LOGIN_ROUTE = "/login";
 export const REGISTER_ROUTE = "/register";
 export const TRAINING_ROUTE = "/trainings";
+export const NOTIFICATIONS_ROUTE = "/notifications";

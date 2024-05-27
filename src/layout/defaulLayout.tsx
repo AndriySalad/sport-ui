@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { HOME_ROUTE, TRAINING_ROUTE } from "../Routes";
+import { HOME_ROUTE, NOTIFICATIONS_ROUTE, TRAINING_ROUTE } from "../Routes";
 
 const DefaultLayout = () => {
   const navigate = useNavigate();
@@ -30,7 +30,10 @@ const DefaultLayout = () => {
           <Button color="inherit" component={Link} to={TRAINING_ROUTE}>
             Go to training
           </Button>
-          <IconButton color="inherit">
+          <IconButton
+            color="inherit"
+            onClick={() => navigate(NOTIFICATIONS_ROUTE)}
+          >
             <Badge variant="standard" color="error">
               <NotificationsIcon />
             </Badge>

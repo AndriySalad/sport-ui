@@ -5,6 +5,7 @@ export interface IUserProfileDate {
   userName: string;
   email: string;
   phone: string;
+  role: string;
   socialMediaLinks: ISocialMediaLinks[];
   goalDescription: string;
   experienceDescription: string;
