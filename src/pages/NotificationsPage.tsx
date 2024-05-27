@@ -44,6 +44,7 @@ const NotificationsPage: React.FC = () => {
   const loadNotifications = async () => {
     const data = await fetchNotifications();
     setNotifications(data || []);
+    setShowHistory(false);
   };
 
   const loadNotificationHistory = async () => {
