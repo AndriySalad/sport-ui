@@ -11,9 +11,11 @@ import {
 import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { HOME_ROUTE, NOTIFICATIONS_ROUTE, TRAINING_ROUTE } from "../Routes";
+import { useAuth } from "../utils/AuthContext";
 
 const DefaultLayout = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   return (
     <>
@@ -34,9 +36,14 @@ const DefaultLayout = () => {
             color="inherit"
             onClick={() => navigate(NOTIFICATIONS_ROUTE)}
           >
-            <Badge variant="standard" color="error">
-              <NotificationsIcon />
-            </Badge>
+            {user && (
+              <Badge
+                variant={user?.notificationCount > 0 ? "dot" : "standard"}
+                color="error"
+              >
+                <NotificationsIcon />
+              </Badge>
+            )}
           </IconButton>
         </Toolbar>
       </AppBar>

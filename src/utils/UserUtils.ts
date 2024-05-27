@@ -10,6 +10,8 @@ export interface IUserProfileDate {
   goalDescription: string;
   experienceDescription: string;
   injuryDescription: string;
+  trainerId: number;
+  notificationCount: number;
 }
 
 export interface ISocialMediaLinks {
