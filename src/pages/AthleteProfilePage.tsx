@@ -30,7 +30,7 @@ const AthleteProfilePage = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [athlete, setTrainer] = useState<IAthleteProfile>();
+  const [athlete, setAthlete] = useState<IAthleteProfile>();
   const [loading, setLoading] = useState(true);
   const [isTrainer, setIsTrainer] = useState(false);
 
@@ -40,7 +40,7 @@ const AthleteProfilePage = () => {
       if (data) {
         const result = data?.trainerId === user?.id;
         setIsTrainer(result);
-        setTrainer(data);
+        setAthlete(data);
         setLoading(false);
       }
     };
@@ -230,6 +230,41 @@ const AthleteProfilePage = () => {
             </AccordionDetails>
           </Accordion>
         </Box>
+        {athlete.stravaRunStats && (
+          <Box mb={3}>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h6">Strava Running Stats</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography variant="body1">
+                  <strong>Total Run Distance:</strong>{" "}
+                  {athlete.stravaRunStats.totalRunDistance} meters
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Total Run Time:</strong>{" "}
+                  {athlete.stravaRunStats.totalRunTime} seconds
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Total Runs:</strong>{" "}
+                  {athlete.stravaRunStats.totalRuns}
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Max Run Distance:</strong>{" "}
+                  {athlete.stravaRunStats.maxRunDistance} meters
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
+        )}
+        {!athlete.stravaRunStats && (
+          <Box mb={3} textAlign="center">
+            <Typography variant="body1" color="textSecondary">
+              Strava data is not available. Please connect to Strava to see your
+              running stats.
+            </Typography>
+          </Box>
+        )}
       </Paper>
     </Container>
   );
