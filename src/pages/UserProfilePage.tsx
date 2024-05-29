@@ -99,14 +99,16 @@ const UserProfilePage = () => {
                 <IconButton onClick={handleSettingsClick} color="primary">
                   <SettingsIcon />
                 </IconButton>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleStravaConnect}
-                  sx={{ ml: 2 }}
-                >
-                  Connect to Strava
-                </Button>
+                {!user.stravaRunStats && (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleStravaConnect}
+                    sx={{ ml: 2 }}
+                  >
+                    Connect to Strava
+                  </Button>
+                )}
               </Box>
             </Box>
             <Box mb={3}>
@@ -243,6 +245,41 @@ const UserProfilePage = () => {
                 </AccordionDetails>
               </Accordion>
             </Box>
+            {user.stravaRunStats && (
+              <Box mb={3}>
+                <Accordion>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h6">Strava Running Stats</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body1">
+                      <strong>Total Run Distance:</strong>{" "}
+                      {user.stravaRunStats.totalRunDistance} meters
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Total Run Time:</strong>{" "}
+                      {user.stravaRunStats.totalRunTime} seconds
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Total Runs:</strong>{" "}
+                      {user.stravaRunStats.totalRuns}
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Max Run Distance:</strong>{" "}
+                      {user.stravaRunStats.maxRunDistance} meters
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+            )}
+            {!user.stravaRunStats && (
+              <Box mb={3} textAlign="center">
+                <Typography variant="body1" color="textSecondary">
+                  Strava data is not available. Please connect to Strava to see
+                  your running stats.
+                </Typography>
+              </Box>
+            )}
           </Paper>
         </Container>
       )}
