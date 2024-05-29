@@ -12,10 +12,18 @@ export interface IUserProfileDate {
   injuryDescription: string;
   trainerId: number;
   notificationCount: number;
+  stravaRunStats?: IStravaRunStats;
 }
 
 export interface ISocialMediaLinks {
   id: number;
   title: string;
   link: string;
+}
+
+export interface IStravaRunStats {
+  totalRunDistance: number;
+  totalRunTime: number;
+  totalRuns: number;
+  maxRunDistance: number;
 }

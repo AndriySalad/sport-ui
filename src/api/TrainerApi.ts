@@ -1,5 +1,5 @@
 import axiosInstance from "../utils/Api";
-import { ISocialMediaLinks } from "../utils/UserUtils";
+import { ISocialMediaLinks, IStravaRunStats } from "../utils/UserUtils";
 
 export interface ITrainerProfile {
   id: number;
@@ -13,6 +13,7 @@ export interface ITrainerProfile {
   injuryDescription: string;
   role: string;
   socialMediaLinks: ISocialMediaLinks[];
+  stravaRunStats?: IStravaRunStats;
 }
 
 export interface IAthleteProfile {
@@ -28,6 +29,7 @@ export interface IAthleteProfile {
   role: string;
   trainerId: number;
   socialMediaLinks: ISocialMediaLinks[];
+  stravaRunStats?: IStravaRunStats;
 }
 
 export interface IUserListItem {

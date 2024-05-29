@@ -61,6 +61,17 @@ const UserProfilePage = () => {
     navigate(MY_ATHLETES);
   };
 
+  const handleStravaConnect = () => {
+    const clientId = "127528";
+    const redirectUri = "http://localhost:5173/strava-callback";
+    const responseType = "code";
+    const scope = "read,activity:read_all";
+    const approvalPrompt = "auto";
+
+    const stravaAuthUrl = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&approval_prompt=${approvalPrompt}&scope=${scope}`;
+    window.location.href = stravaAuthUrl;
+  };
+
   return (
     <>
       {user && (
@@ -84,9 +95,21 @@ const UserProfilePage = () => {
                   {user.firstName} {user.lastName}
                 </Typography>
               </Box>
-              <IconButton onClick={handleSettingsClick} color="primary">
-                <SettingsIcon />
-              </IconButton>
+              <Box>
+                <IconButton onClick={handleSettingsClick} color="primary">
+                  <SettingsIcon />
+                </IconButton>
+                {!user.stravaRunStats && (
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleStravaConnect}
+                    sx={{ ml: 2 }}
+                  >
+                    Connect to Strava
+                  </Button>
+                )}
+              </Box>
             </Box>
             <Box mb={3}>
               <Typography variant="body1">
@@ -222,6 +245,41 @@ const UserProfilePage = () => {
                 </AccordionDetails>
               </Accordion>
             </Box>
+            {user.stravaRunStats && (
+              <Box mb={3}>
+                <Accordion>
+                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                    <Typography variant="h6">Strava Running Stats</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body1">
+                      <strong>Total Run Distance:</strong>{" "}
+                      {user.stravaRunStats.totalRunDistance} meters
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Total Run Time:</strong>{" "}
+                      {user.stravaRunStats.totalRunTime} seconds
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Total Runs:</strong>{" "}
+                      {user.stravaRunStats.totalRuns}
+                    </Typography>
+                    <Typography variant="body1">
+                      <strong>Max Run Distance:</strong>{" "}
+                      {user.stravaRunStats.maxRunDistance} meters
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Box>
+            )}
+            {!user.stravaRunStats && (
+              <Box mb={3} textAlign="center">
+                <Typography variant="body1" color="textSecondary">
+                  Strava data is not available. Please connect to Strava to see
+                  your running stats.
+                </Typography>
+              </Box>
+            )}
           </Paper>
         </Container>
       )}

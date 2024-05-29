@@ -9,3 +9,4 @@ export const TRAINER_PROFILE = "/trainer/:id";
 export const ATHLETE_PROFILE = "/athlete/:id";
 export const USERS_LIST = "/users";
 export const MY_ATHLETES = "/my-athletes";
+export const STRAVA_CALLBACK = "/strava-callback";

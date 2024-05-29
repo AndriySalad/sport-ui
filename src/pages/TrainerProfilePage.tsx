@@ -215,6 +215,41 @@ const TrainerProfilePage = () => {
             </AccordionDetails>
           </Accordion>
         </Box>
+        {trainer.stravaRunStats && (
+          <Box mb={3}>
+            <Accordion>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                <Typography variant="h6">Strava Running Stats</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Typography variant="body1">
+                  <strong>Total Run Distance:</strong>{" "}
+                  {trainer.stravaRunStats.totalRunDistance} meters
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Total Run Time:</strong>{" "}
+                  {trainer.stravaRunStats.totalRunTime} seconds
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Total Runs:</strong>{" "}
+                  {trainer.stravaRunStats.totalRuns}
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Max Run Distance:</strong>{" "}
+                  {trainer.stravaRunStats.maxRunDistance} meters
+                </Typography>
+              </AccordionDetails>
+            </Accordion>
+          </Box>
+        )}
+        {!trainer.stravaRunStats && (
+          <Box mb={3} textAlign="center">
+            <Typography variant="body1" color="textSecondary">
+              Strava data is not available. Please connect to Strava to see your
+              running stats.
+            </Typography>
+          </Box>
+        )}
       </Paper>
     </Container>
   );
