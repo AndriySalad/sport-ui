@@ -8,6 +8,7 @@ import {
   MY_ATHLETES,
   NOTIFICATIONS_ROUTE,
   REGISTER_ROUTE,
+  STRAVA_CALLBACK,
   TRAINER_PROFILE,
   TRAINING_ROUTE,
   USERS_LIST,
@@ -25,6 +26,7 @@ import UserListPage from "./pages/UserListPage";
 import AthleteProfilePage from "./pages/AthleteProfilePage";
 import MyAthletesPage from "./pages/MyAthletesPage";
 import TrainingPageForTrainer from "./pages/TrainingPageForTrainer";
+import StravaCallback from "./pages/StravaCallback";
 
 const Router = () => {
   return (
@@ -51,6 +53,7 @@ const Router = () => {
         <Route path={ATHLETE_PROFILE} element={<AthleteProfilePage />} />
         <Route path={USERS_LIST} element={<UserListPage />} />
         <Route path={MY_ATHLETES} element={<MyAthletesPage />} />
+        <Route path={STRAVA_CALLBACK} element={<StravaCallback />} />
         <Route path="*" element={<h1>Not Found</h1>} />
       </Route>
     </Routes>

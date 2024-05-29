@@ -61,6 +61,17 @@ const UserProfilePage = () => {
     navigate(MY_ATHLETES);
   };
 
+  const handleStravaConnect = () => {
+    const clientId = "127528";
+    const redirectUri = "http://localhost:5173/strava-callback";
+    const responseType = "code";
+    const scope = "read,activity:read_all";
+    const approvalPrompt = "auto";
+
+    const stravaAuthUrl = `https://www.strava.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&approval_prompt=${approvalPrompt}&scope=${scope}`;
+    window.location.href = stravaAuthUrl;
+  };
+
   return (
     <>
       {user && (
@@ -84,9 +95,19 @@ const UserProfilePage = () => {
                   {user.firstName} {user.lastName}
                 </Typography>
               </Box>
-              <IconButton onClick={handleSettingsClick} color="primary">
-                <SettingsIcon />
-              </IconButton>
+              <Box>
+                <IconButton onClick={handleSettingsClick} color="primary">
+                  <SettingsIcon />
+                </IconButton>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleStravaConnect}
+                  sx={{ ml: 2 }}
+                >
+                  Connect to Strava
+                </Button>
+              </Box>
             </Box>
             <Box mb={3}>
               <Typography variant="body1">
