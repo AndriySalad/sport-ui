@@ -3,6 +3,7 @@ export const EDIT_PROFILE_ROUTE = "/profile-config";
 export const LOGIN_ROUTE = "/login";
 export const REGISTER_ROUTE = "/register";
 export const TRAINING_ROUTE = "/trainings";
+export const ATHLETE_TRAINING_ROUTE = "/trainings/:athleteId";
 export const NOTIFICATIONS_ROUTE = "/notifications";
 export const TRAINER_PROFILE = "/trainer/:id";
 export const ATHLETE_PROFILE = "/athlete/:id";

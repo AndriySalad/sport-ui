@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import {
   ATHLETE_PROFILE,
+  ATHLETE_TRAINING_ROUTE,
   EDIT_PROFILE_ROUTE,
   HOME_ROUTE,
   LOGIN_ROUTE,
@@ -23,6 +24,7 @@ import TrainerProfilePage from "./pages/TrainerProfilePage";
 import UserListPage from "./pages/UserListPage";
 import AthleteProfilePage from "./pages/AthleteProfilePage";
 import MyAthletesPage from "./pages/MyAthletesPage";
+import TrainingPageForTrainer from "./pages/TrainingPageForTrainer";
 
 const Router = () => {
   return (
@@ -40,6 +42,10 @@ const Router = () => {
         <Route index element={<UserProfilePage />} />
         <Route path={EDIT_PROFILE_ROUTE} element={<EditUserProfilePage />} />
         <Route path={TRAINING_ROUTE} element={<TrainingsPage />} />
+        <Route
+          path={ATHLETE_TRAINING_ROUTE}
+          element={<TrainingPageForTrainer />}
+        />
         <Route path={NOTIFICATIONS_ROUTE} element={<NotificationsPage />} />
         <Route path={TRAINER_PROFILE} element={<TrainerProfilePage />} />
         <Route path={ATHLETE_PROFILE} element={<AthleteProfilePage />} />

@@ -26,12 +26,34 @@ export interface IFetchTrainingsProps {
   endDate: string;
 }
 
+export interface IFetchAthleteTrainingsProps {
+  athleteId?: string;
+  startDate: string;
+  endDate: string;
+}
+
 export interface ICreateTraining {
   title: string;
   description: string;
   date: string;
   creatorId?: number;
 }
+
+export const fetchAthleteTrainings = async ({
+  athleteId,
+  startDate,
+  endDate,
+}: IFetchAthleteTrainingsProps) => {
+  try {
+    const response = await axiosInstance.get<Training[]>(
+      `/api/v1/trainings/by-athlete/${athleteId}/between/${startDate}/and/${endDate}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching trainings:", error);
+    return [];
+  }
+};
 
 export const fetchMyTrainings = async ({
   startDate,
