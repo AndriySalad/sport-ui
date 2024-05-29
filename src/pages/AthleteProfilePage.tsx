@@ -49,12 +49,12 @@ const AthleteProfilePage = () => {
   }, [user]);
 
   const handleRemoveTrainer = async () => {
-    await sendRemoveTrainerRequest("remove-trainer", athlete?.id, user?.id);
+    await sendRemoveTrainerRequest("remove-trainee", user?.id, athlete?.id);
     navigate(HOME_ROUTE);
   };
 
   const handleRequestToJoin = async () => {
-    await sendAddAthleteRequest("TO_BE_ATHLETE", athlete?.id, user?.id);
+    await sendAddAthleteRequest("TO_BE_COACH", user?.id, athlete?.id);
     navigate(HOME_ROUTE);
   };
 
@@ -106,13 +106,28 @@ const AthleteProfilePage = () => {
           </Box>
           <Box>
             {isTrainer ? (
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleRemoveTrainer}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                }}
               >
-                Remove Athlete
-              </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleRemoveTrainer}
+                >
+                  Remove Athlete
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => navigate(`/trainings/${athlete.id}`)}
+                >
+                  Go to training creation
+                </Button>
+              </Box>
             ) : (
               <Button
                 variant="contained"
