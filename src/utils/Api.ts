@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_ROUTE } from "../ApiRoute";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: API_ROUTE,
 });
 
 export default axiosInstance;

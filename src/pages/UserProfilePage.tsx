@@ -18,12 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
-import {
-  EDIT_PROFILE_ROUTE,
-  LOGIN_ROUTE,
-  MY_ATHLETES,
-  USERS_LIST,
-} from "../Routes";
+import { EDIT_PROFILE_ROUTE, MY_ATHLETES, USERS_LIST } from "../Routes";
 import { useEffect } from "react";
 import axiosInstance from "../utils/Api";
 

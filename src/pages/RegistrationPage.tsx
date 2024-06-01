@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/Api";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { HOME_ROUTE, LOGIN_ROUTE } from "../Routes";
 
 export interface RegisterProps {
@@ -34,9 +34,7 @@ const Register: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-    getValues,
   } = useForm<RegisterProps>();
 
   const handleNext = () => {
@@ -209,7 +207,7 @@ const Register: React.FC = () => {
             Registration
           </Typography>
           <Stepper activeStep={activeStep} sx={{ width: "100%", mb: 3 }}>
-            {steps.map((label, index) => (
+            {steps.map((label) => (
               <Step key={label}>
                 <StepLabel>{label}</StepLabel>
               </Step>

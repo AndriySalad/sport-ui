@@ -72,17 +72,13 @@ export const sendAddAthleteRequest = async (
   trainerId?: number
 ) => {
   try {
-    const response = await axiosInstance.post(
-      `/api/v1/athlete-trainer/request`,
-      null,
-      {
-        params: {
-          athleteId: athleteId,
-          trainerId: trainerId,
-          type: type,
-        },
-      }
-    );
+    await axiosInstance.post(`/api/v1/athlete-trainer/request`, null, {
+      params: {
+        athleteId: athleteId,
+        trainerId: trainerId,
+        type: type,
+      },
+    });
   } catch (error) {
     console.error("Error sending add athlete request", error);
   }
@@ -94,17 +90,13 @@ export const sendRemoveTrainerRequest = async (
   trainerId?: number
 ) => {
   try {
-    const response = await axiosInstance.post(
-      `/api/v1/athlete-trainer/handle-request`,
-      null,
-      {
-        params: {
-          athleteId: athleteId,
-          trainerId: trainerId,
-          action: type,
-        },
-      }
-    );
+    await axiosInstance.post(`/api/v1/athlete-trainer/handle-request`, null, {
+      params: {
+        athleteId: athleteId,
+        trainerId: trainerId,
+        action: type,
+      },
+    });
   } catch (error) {
     console.error("Error sending add athlete request", error);
   }

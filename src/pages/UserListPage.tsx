@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Container,
   Paper,
@@ -10,7 +10,6 @@ import {
   ListItemAvatar,
   ListItemText,
   CircularProgress,
-  Button,
   Link as MuiLink,
 } from "@mui/material";
 import { useAuth } from "../utils/AuthContext";

@@ -25,7 +25,6 @@ import {
   createNewExercise,
   createNewTraining,
   fetchAthleteTrainings,
-  updateExerciseStatus,
 } from "../api/TrainingApi";
 import { useAuth } from "../utils/AuthContext";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
@@ -78,18 +77,6 @@ const TrainingPageForTrainer: React.FC = () => {
       fetchTrainings();
     } catch (error) {
       console.error("Error adding training", error);
-    }
-  };
-
-  const handleToggleExercise = async (
-    exerciseId: number,
-    trainingId: number
-  ) => {
-    try {
-      await updateExerciseStatus(exerciseId, trainingId);
-      fetchTrainings();
-    } catch (error) {
-      console.error("Error toggling exercise", error);
     }
   };
 

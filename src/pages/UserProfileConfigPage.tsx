@@ -27,6 +27,7 @@ const EditUserProfilePage: React.FC = () => {
   const [linkData, setLinkData] = useState({ title: "", link: "" });
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log(event);
     setTabIndex(newValue);
   };
 
