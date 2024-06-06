@@ -24,7 +24,6 @@ import {
   sendRemoveTrainerRequest,
 } from "../api/TrainerApi";
 import { useAuth } from "../utils/AuthContext";
-import { HOME_ROUTE } from "../Routes";
 
 const AthleteProfilePage = () => {
   const { id } = useParams();
@@ -50,12 +49,12 @@ const AthleteProfilePage = () => {
 
   const handleRemoveTrainer = async () => {
     await sendRemoveTrainerRequest("remove-trainee", user?.id, athlete?.id);
-    navigate(HOME_ROUTE);
+    navigate("/");
   };
 
   const handleRequestToJoin = async () => {
     await sendAddAthleteRequest("TO_BE_COACH", user?.id, athlete?.id);
-    navigate(HOME_ROUTE);
+    navigate("/");
   };
 
   if (loading) {

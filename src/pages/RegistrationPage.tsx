@@ -12,7 +12,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/Api";
 import { useForm } from "react-hook-form";
-import { HOME_ROUTE, LOGIN_ROUTE } from "../Routes";
 
 export interface RegisterProps {
   firstName: string;
@@ -58,7 +57,7 @@ const Register: React.FC = () => {
         data
       );
       localStorage.setItem("token", response.data.access_token);
-      navigate(HOME_ROUTE, { replace: true });
+      navigate("/", { replace: true });
     } catch (err) {
       setError("Registration failed. Please check your data and try again.");
     }
@@ -247,7 +246,7 @@ const Register: React.FC = () => {
           </form>
           <Box mt={5}>
             <Typography variant="body2">
-              Already has an account? <Link to={LOGIN_ROUTE}>Login</Link>
+              Already has an account? <Link to={"/login"}>Login</Link>
             </Typography>
           </Box>
         </Box>

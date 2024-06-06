@@ -3,7 +3,6 @@ import { Container, TextField, Button, Typography, Box } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/Api";
 import { useForm } from "react-hook-form";
-import { REGISTER_ROUTE } from "../Routes";
 
 export interface LoginProps {
   email: string;
@@ -104,7 +103,7 @@ const Login: React.FC = () => {
 
           <Box mt={5}>
             <Typography variant="body2">
-              Don't have an account? <Link to={REGISTER_ROUTE}>Register</Link>
+              Don't have an account? <Link to={"/register"}>Register</Link>
             </Typography>
           </Box>
         </Box>

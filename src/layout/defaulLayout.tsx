@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { Notifications as NotificationsIcon } from "@mui/icons-material";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { HOME_ROUTE, NOTIFICATIONS_ROUTE, TRAINING_ROUTE } from "../Routes";
 import { useAuth } from "../utils/AuthContext";
 
 const DefaultLayout = () => {
@@ -25,16 +24,16 @@ const DefaultLayout = () => {
             variant="h6"
             component="div"
             sx={{ flexGrow: 1, cursor: "pointer" }}
-            onClick={() => navigate(HOME_ROUTE)}
+            onClick={() => navigate("/")}
           >
             MySport
           </Typography>
-          <Button color="inherit" component={Link} to={TRAINING_ROUTE}>
+          <Button color="inherit" component={Link} to={"/trainings"}>
             Go to training
           </Button>
           <IconButton
             color="inherit"
-            onClick={() => navigate(NOTIFICATIONS_ROUTE)}
+            onClick={() => navigate("/notifications")}
           >
             {user && (
               <Badge

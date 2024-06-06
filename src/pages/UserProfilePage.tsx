@@ -18,7 +18,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../utils/AuthContext";
-import { EDIT_PROFILE_ROUTE, MY_ATHLETES, USERS_LIST } from "../Routes";
 import { useEffect } from "react";
 import axiosInstance from "../utils/Api";
 
@@ -41,11 +40,11 @@ const UserProfilePage = () => {
   }, []);
 
   const handleSettingsClick = () => {
-    navigate(EDIT_PROFILE_ROUTE);
+    navigate("/profile-config");
   };
 
   const handleViewListUsers = () => {
-    navigate(USERS_LIST);
+    navigate("/users");
   };
 
   const handleViewTrainerProfile = () => {
@@ -53,7 +52,7 @@ const UserProfilePage = () => {
   };
 
   const handleViewMyAthletes = () => {
-    navigate(MY_ATHLETES);
+    navigate("/my-athletes");
   };
 
   const handleStravaConnect = () => {
