@@ -58,7 +58,8 @@ const UserProfilePage = () => {
 
   const handleStravaConnect = () => {
     const clientId = "127528";
-    const redirectUri = "https://sport-ui-6ss5.onrender.com/strava-callback";
+    const redirectUri =
+      "https://salmon-pond-078c09810.5.azurestaticapps.net/strava-callback";
     const responseType = "code";
     const scope = "read,activity:read_all";
     const approvalPrompt = "auto";
