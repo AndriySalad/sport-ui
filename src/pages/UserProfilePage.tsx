@@ -58,7 +58,7 @@ const UserProfilePage = () => {
 
   const handleStravaConnect = () => {
     const clientId = "127528";
-    const redirectUri = "http://localhost:5173/strava-callback";
+    const redirectUri = "https://sport-ui-6ss5.onrender.com/strava-callback";
     const responseType = "code";
     const scope = "read,activity:read_all";
     const approvalPrompt = "auto";
