@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../utils/Api";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 
 export interface RegisterProps {
   firstName: string;
@@ -29,15 +29,19 @@ const Register: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
+  const methods = useForm<RegisterProps>();
   const {
     register,
     handleSubmit,
+    trigger,
     formState: { errors },
-  } = useForm<RegisterProps>();
+  } = methods;
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const handleNext = async () => {
+    const isValid = await trigger();
+    if (isValid) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -212,41 +216,43 @@ const Register: React.FC = () => {
               </Step>
             ))}
           </Stepper>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            {renderStepContent(activeStep)}
-            {error && (
-              <Typography color="error" variant="body2">
-                {error}
-              </Typography>
-            )}
-            <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: "1 1 auto" }} />
-              {activeStep === steps.length - 1 ? (
-                <Button type="submit" variant="contained" color="primary">
-                  Registration
-                </Button>
-              ) : (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleNext}
-                >
-                  Next
-                </Button>
+          <FormProvider {...methods}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {renderStepContent(activeStep)}
+              {error && (
+                <Typography color="error" variant="body2">
+                  {error}
+                </Typography>
               )}
-            </Box>
-          </form>
+              <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                <Button
+                  color="inherit"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Back
+                </Button>
+                <Box sx={{ flex: "1 1 auto" }} />
+                {activeStep === steps.length - 1 ? (
+                  <Button type="submit" variant="contained" color="primary">
+                    Register
+                  </Button>
+                ) : (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleNext}
+                  >
+                    Next
+                  </Button>
+                )}
+              </Box>
+            </form>
+          </FormProvider>
           <Box mt={5}>
             <Typography variant="body2">
-              Already has an account? <Link to={"/login"}>Login</Link>
+              Already have an account? <Link to={"/login"}>Login</Link>
             </Typography>
           </Box>
         </Box>
