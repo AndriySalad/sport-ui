@@ -34,17 +34,20 @@ const Register: React.FC = () => {
     register,
     handleSubmit,
     trigger,
-    formState: { errors, isSubmitted },
+    clearErrors,
+    formState: { errors, touchedFields },
   } = methods;
 
   const handleNext = async () => {
     const isValid = await trigger();
     if (isValid) {
+      clearErrors();
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
     }
   };
 
   const handleBack = () => {
+    clearErrors();
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -79,8 +82,12 @@ const Register: React.FC = () => {
               margin="normal"
               fullWidth
               {...register("firstName", { required: "First name is required" })}
-              error={!!errors.firstName}
-              helperText={errors.firstName ? errors.firstName.message : ""}
+              error={!!errors.firstName && touchedFields.firstName}
+              helperText={
+                errors.firstName && touchedFields.firstName
+                  ? errors.firstName.message
+                  : ""
+              }
             />
             <TextField
               key={"lastName"}
@@ -89,8 +96,12 @@ const Register: React.FC = () => {
               margin="normal"
               fullWidth
               {...register("lastName", { required: "Last name is required" })}
-              error={!!errors.lastName}
-              helperText={errors.lastName ? errors.lastName.message : ""}
+              error={!!errors.lastName && touchedFields.lastName}
+              helperText={
+                errors.lastName && touchedFields.lastName
+                  ? errors.lastName.message
+                  : ""
+              }
             />
             <TextField
               key={"role"}
@@ -102,8 +113,10 @@ const Register: React.FC = () => {
                 native: true,
               }}
               {...register("role", { required: "Role is required" })}
-              error={!!errors.role}
-              helperText={errors.role ? errors.role.message : ""}
+              error={!!errors.role && touchedFields.role}
+              helperText={
+                errors.role && touchedFields.role ? errors.role.message : ""
+              }
             >
               <option value="">What do you plan to do?</option>
               <option value="ROLE_USER">Train</option>
@@ -127,8 +140,10 @@ const Register: React.FC = () => {
                   message: "Invalid email address",
                 },
               })}
-              error={!!errors.email}
-              helperText={errors.email ? errors.email.message : ""}
+              error={!!errors.email && touchedFields.email}
+              helperText={
+                errors.email && touchedFields.email ? errors.email.message : ""
+              }
             />
             <TextField
               key={"phone"}
@@ -143,8 +158,10 @@ const Register: React.FC = () => {
                   message: "Invalid phone number",
                 },
               })}
-              error={!!errors.phone}
-              helperText={errors.phone ? errors.phone.message : ""}
+              error={!!errors.phone && touchedFields.phone}
+              helperText={
+                errors.phone && touchedFields.phone ? errors.phone.message : ""
+              }
             />
           </>
         );
@@ -159,8 +176,12 @@ const Register: React.FC = () => {
               type="password"
               fullWidth
               {...register("password", { required: "Password is required" })}
-              error={!!errors.password && isSubmitted}
-              helperText={errors.password ? errors.password.message : ""}
+              error={!!errors.password && touchedFields.password}
+              helperText={
+                errors.password && touchedFields.password
+                  ? errors.password.message
+                  : ""
+              }
             />
             <TextField
               key={"confirmPassword"}
@@ -172,9 +193,11 @@ const Register: React.FC = () => {
               {...register("confirmPassword", {
                 required: "Password confirmation is required",
               })}
-              error={!!errors.confirmPassword && isSubmitted}
+              error={!!errors.confirmPassword && touchedFields.confirmPassword}
               helperText={
-                errors.confirmPassword ? errors.confirmPassword.message : ""
+                errors.confirmPassword && touchedFields.confirmPassword
+                  ? errors.confirmPassword.message
+                  : ""
               }
             />
           </>
