@@ -29,12 +29,12 @@ const Register: React.FC = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const methods = useForm<RegisterProps>();
+  const methods = useForm<RegisterProps>({ mode: "onTouched" });
   const {
     register,
     handleSubmit,
     trigger,
-    formState: { errors },
+    formState: { errors, isSubmitted },
   } = methods;
 
   const handleNext = async () => {
@@ -159,7 +159,7 @@ const Register: React.FC = () => {
               type="password"
               fullWidth
               {...register("password", { required: "Password is required" })}
-              error={!!errors.password}
+              error={!!errors.password && isSubmitted}
               helperText={errors.password ? errors.password.message : ""}
             />
             <TextField
@@ -172,7 +172,7 @@ const Register: React.FC = () => {
               {...register("confirmPassword", {
                 required: "Password confirmation is required",
               })}
-              error={!!errors.confirmPassword}
+              error={!!errors.confirmPassword && isSubmitted}
               helperText={
                 errors.confirmPassword ? errors.confirmPassword.message : ""
               }
