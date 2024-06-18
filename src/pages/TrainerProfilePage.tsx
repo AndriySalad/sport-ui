@@ -46,7 +46,7 @@ const TrainerProfilePage = () => {
     };
 
     loadTrainerProfile();
-  }, []);
+  }, [user]);
 
   const handleRemoveTrainer = async () => {
     await sendRemoveTrainerRequest("remove-trainer", user?.id, trainer?.id);
